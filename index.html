@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Абагурский Карьер — Дорожные строительные материалы, Новокузнецк</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geologica:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+
+/* ─── RESET ─── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: #191614; color: #e2d4b8 !important; overflow-x: hidden; }
+
+/* ─── ОБЩИЕ КОМПОНЕНТЫ ─── */
+.abk-eyebrow {
+  font-family: 'Geologica', sans-serif;
+  font-size: .62rem; letter-spacing: .22em; text-transform: uppercase;
+  color: #c4a045 !important; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 14px;
+}
+.abk-eyebrow::before { content: ''; width: 28px; height: 1px; background: #c4a045; flex-shrink: 0; }
+
+.abk-sec-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: .95; color: #fdfaf4 !important; letter-spacing: .025em; margin: 0;
+}
+
+.abk-btn-primary {
+  background: #c4a045; color: #191614 !important;
+  padding: 15px 34px; font-family: 'Geologica', sans-serif;
+  font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  text-decoration: none; display: inline-block; border: none; cursor: pointer;
+  transition: background .25s, transform .2s;
+}
+.abk-btn-primary:hover { background: #d4b05a; transform: translateY(-2px); }
+
+.abk-btn-ghost {
+  background: transparent; border: 1px solid rgba(226,212,184,.25); color: #e2d4b8 !important;
+  padding: 12px 24px; font-family: 'Geologica', sans-serif;
+  font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+  text-decoration: none; display: inline-block; white-space: nowrap;
+  transition: border-color .25s, color .25s;
+}
+.abk-btn-ghost:hover { border-color: #c4a045 !important; color: #c4a045 !important; }
+
+.abk-anim { opacity: 0; transform: translateY(24px); transition: opacity .75s ease, transform .75s ease; }
+.abk-anim.abk-visible { opacity: 1; transform: translateY(0); }
+
+/* ══ 01 HERO ══ */
+.abk-hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: flex-end;
+  padding: 0 60px 72px; overflow: hidden; background: #191614;
+}
+.abk-hero__bg {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(150deg, rgba(196,160,69,.07) 0%, transparent 45%),
+    linear-gradient(to top, #191614 0%, rgba(25,22,20,.5) 55%, rgba(25,22,20,.2) 100%),
+    url('https://static.tildacdn.com/tild3433-3462-4633-a464-363035666465/IMG_20200618_083321.jpg') center/cover no-repeat;
+  filter: saturate(.35) brightness(.55); z-index: 0;
+}
+.abk-hero__inner { position: relative; z-index: 2; max-width: 700px; }
+.abk-hero__badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 1px solid rgba(196,160,69,.35); padding: 7px 18px;
+  font-family: 'Geologica', sans-serif; font-size: .65rem;
+  letter-spacing: .2em; text-transform: uppercase; color: #c4a045 !important;
+  margin-bottom: 20px; animation: abkFadeUp .8s ease both;
+}
+.abk-hero__dot { width: 5px; height: 5px; background: #c4a045; border-radius: 50%; flex-shrink: 0; }
+.abk-hero__title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  line-height: .9; color: #fdfaf4 !important; letter-spacing: .025em;
+  margin: 0 0 20px; animation: abkFadeUp .9s .1s ease both;
+}
+.abk-hero__title em { font-style: normal; color: #c4a045 !important; }
+.abk-hero__sub {
+  font-family: 'Geologica', sans-serif; font-size: .95rem; font-weight: 300;
+  color: #e2d4b8 !important; opacity: .7; max-width: 500px; line-height: 1.7;
+  margin: 0 0 32px; animation: abkFadeUp 1s .2s ease both;
+}
+.abk-hero__actions {
+  display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
+  animation: abkFadeUp 1s .3s ease both;
+}
+.abk-hero__btn-primary {
+  background: #c4a045; color: #191614 !important; padding: 15px 34px;
+  font-family: 'Geologica', sans-serif; font-size: .75rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; text-decoration: none;
+  display: inline-block; transition: background .25s, transform .2s;
+}
+.abk-hero__btn-primary:hover { background: #d4b05a; transform: translateY(-2px); }
+.abk-hero__btn-ghost {
+  background: transparent; border: 1px solid rgba(226,212,184,.25); color: #e2d4b8 !important;
+  padding: 14px 30px; font-family: 'Geologica', sans-serif; font-size: .75rem;
+  letter-spacing: .12em; text-transform: uppercase; text-decoration: none;
+  display: inline-block; transition: border-color .25s, color .25s;
+}
+.abk-hero__btn-ghost:hover { border-color: #c4a045 !important; color: #c4a045 !important; }
+.abk-hero__stats {
+  position: absolute; right: 60px; bottom: 72px; z-index: 2;
+  display: flex; flex-direction: column; gap: 24px;
+  animation: abkFadeLeft 1s .4s ease both;
+}
+.abk-hero__stat { text-align: right; border-right: 2px solid #c4a045; padding-right: 18px; }
+.abk-hero__stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: #c4a045 !important; line-height: 1; }
+.abk-hero__stat-label { font-family: 'Geologica', sans-serif; font-size: .6rem; text-transform: uppercase; letter-spacing: .14em; color: #e2d4b8 !important; opacity: .45; margin-top: 3px; }
+
+@keyframes abkFadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes abkFadeLeft { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: translateX(0); } }
+
+/* ══ 02 TICKER ══ */
+.abk-ticker { background: #c4a045; overflow: hidden; padding: 13px 0; width: 100%; }
+.abk-ticker__inner { display: flex; width: max-content; animation: abkTick 22s linear infinite; }
+.abk-ticker__item {
+  font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .12em;
+  color: #191614 !important; padding: 0 40px; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 40px;
+}
+.abk-ticker__item::after { content: '◆'; font-size: .45rem; opacity: .45; }
+@keyframes abkTick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ══ 03 О КОМПАНИИ ══ */
+.abk-about { background: #272019; padding: 96px 60px; }
+.abk-about__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; max-width: 1200px; margin: 0 auto; }
+.abk-about__p { font-family: 'Geologica', sans-serif; margin-top: 20px; font-size: .92rem; font-weight: 300; line-height: 1.8; color: #e2d4b8 !important; opacity: .68; }
+.abk-about__p strong { color: #c4a045 !important; font-weight: 500; opacity: 1; }
+.abk-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+.abk-chip { border: 1px solid rgba(196,160,69,.3); padding: 6px 16px; font-family: 'Geologica', sans-serif; font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: #c4a045 !important; }
+.abk-about__pic { position: relative; height: 480px; background: #3e3530; overflow: hidden; }
+.abk-about__pic img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.45) brightness(.65); display: block; }
+.abk-about__corner { position: absolute; top: 20px; right: 20px; width: 52px; height: 52px; border-top: 2px solid #c4a045; border-right: 2px solid #c4a045; }
+.abk-about__tag { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(25,22,20,.88)); padding: 20px 18px 14px; font-family: 'Geologica', sans-serif; font-size: .58rem; letter-spacing: .14em; text-transform: uppercase; color: #e2d4b8 !important; opacity: .5; }
+.abk-about__badge { position: absolute; bottom: 20px; right: 20px; background: #c4a045; padding: 16px 20px; text-align: center; }
+.abk-about__badge-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: #191614 !important; line-height: 1; }
+.abk-about__badge-label { font-family: 'Geologica', sans-serif; font-size: .55rem; text-transform: uppercase; letter-spacing: .1em; color: #191614 !important; opacity: .65; }
+
+/* ══ 04 ПРОДУКЦИЯ ══ */
+.abk-products { background: #191614; padding: 96px 60px; }
+.abk-products__wrap { max-width: 1200px; margin: 0 auto; }
+.abk-products__header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 52px; flex-wrap: wrap; gap: 20px; }
+.abk-prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.abk-prod-card { background: #272019; padding: 44px 32px; position: relative; overflow: hidden; transition: background .3s; }
+.abk-prod-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: #c4a045; transform: scaleX(0); transform-origin: left; transition: transform .35s ease; }
+.abk-prod-card:hover::after { transform: scaleX(1); }
+.abk-prod-card:hover { background: #342a1e; }
+.abk-prod-ghost { position: absolute; top: 18px; right: 22px; font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: rgba(196,160,69,.055); line-height: 1; pointer-events: none; }
+.abk-prod-icon { width: 48px; height: 48px; background: rgba(196,160,69,.1); border: 1px solid rgba(196,160,69,.2); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 24px; }
+.abk-prod-photo { width: 100%; height: 160px; overflow: hidden; margin-bottom: 20px; margin-left: -32px; margin-right: -32px; width: calc(100% + 64px); }
+.abk-prod-photo img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.6) brightness(.85); transition: transform .4s ease, filter .4s ease; }
+.abk-prod-card:hover .abk-prod-photo img { transform: scale(1.04); filter: saturate(.8) brightness(.9); }
+.abk-prod-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.65rem; color: #fdfaf4 !important; letter-spacing: .04em; margin-bottom: 10px; }
+.abk-prod-desc { font-family: 'Geologica', sans-serif; font-size: .82rem; font-weight: 300; line-height: 1.65; color: #e2d4b8 !important; opacity: .5; margin-bottom: 18px; }
+.abk-specs { display: flex; flex-direction: column; }
+.abk-sr { display: flex; justify-content: space-between; align-items: baseline; padding: 5px 0; border-bottom: 1px solid rgba(226,212,184,.06); }
+.abk-sr:last-child { border: none; }
+.abk-sk { font-family: 'Geologica', sans-serif; font-size: .6rem; text-transform: uppercase; letter-spacing: .1em; color: #e2d4b8 !important; opacity: .38; }
+.abk-sv { font-family: 'Geologica', sans-serif; font-size: .72rem; color: #c4a045 !important; font-weight: 500; }
+
+/* ══ 05 ПОЧЕМУ МЫ ══ */
+.abk-why { background: #272019; padding: 96px 60px; }
+.abk-why__wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; max-width: 1200px; margin: 0 auto; }
+.abk-why__list { margin-top: 44px; }
+.abk-why__item { display: grid; grid-template-columns: 52px 1fr; gap: 20px; padding: 24px 0; border-bottom: 1px solid rgba(226,212,184,.07); align-items: start; }
+.abk-why__item:first-child { border-top: 1px solid rgba(226,212,184,.07); }
+.abk-why__num { font-family: 'Bebas Neue', sans-serif; font-size: 1.9rem; color: #c4a045 !important; opacity: .45; line-height: 1.1; }
+.abk-why__title { font-family: 'Geologica', sans-serif; font-size: .95rem; font-weight: 500; color: #fdfaf4 !important; margin-bottom: 5px; }
+.abk-why__text { font-family: 'Geologica', sans-serif; font-size: .82rem; font-weight: 300; line-height: 1.65; color: #e2d4b8 !important; opacity: .5; margin: 0; }
+.abk-why__visual { position: sticky; top: 100px; }
+.abk-why__pic { width: 100%; height: 480px; background: #3e3530; position: relative; overflow: hidden; }
+.abk-why__pic img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.4) brightness(.65); display: block; }
+.abk-why__badge { position: absolute; bottom: -1px; right: -1px; background: #c4a045; padding: 24px 28px; width: 200px; }
+.abk-why__badge-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: #191614 !important; line-height: 1; }
+.abk-why__badge-label { font-family: 'Geologica', sans-serif; font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #191614 !important; opacity: .65; margin-top: 3px; }
+
+/* ══ 06 ХАРАКТЕРИСТИКИ ══ */
+.abk-props { background: #191614; padding: 96px 60px; }
+.abk-props__wrap { max-width: 1200px; margin: 0 auto; }
+.abk-props .abk-sec-title { margin-bottom: 52px; }
+.abk-props__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+.abk-prop-card { background: #272019; padding: 32px 26px; transition: background .3s; }
+.abk-prop-card:hover { background: #342a1e; }
+.abk-prop-icon { font-size: 1.6rem; margin-bottom: 16px; display: block; }
+.abk-prop-label { font-family: 'Geologica', sans-serif; font-size: .6rem; text-transform: uppercase; letter-spacing: .16em; color: #e2d4b8 !important; opacity: .38; margin-bottom: 8px; }
+.abk-prop-value { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: #c4a045 !important; letter-spacing: .04em; line-height: 1.1; }
+.abk-prop-sub { font-family: 'Geologica', sans-serif; font-size: .72rem; color: #e2d4b8 !important; opacity: .45; margin-top: 5px; font-weight: 300; line-height: 1.4; }
+
+/* ══ 07 КОНТАКТЫ ══ */
+.abk-contact { background: #c4a045; padding: 96px 60px; }
+.abk-contact__wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; max-width: 1200px; margin: 0 auto; }
+.abk-eyebrow-dark { font-family: 'Geologica', sans-serif; font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; color: rgba(25,22,20,.5); margin-bottom: 14px; display: flex; align-items: center; gap: 14px; }
+.abk-eyebrow-dark::before { content: ''; width: 28px; height: 1px; background: rgba(25,22,20,.4); flex-shrink: 0; }
+.abk-contact__title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.4rem, 5vw, 4rem); line-height: .95; color: #191614 !important; letter-spacing: .025em; margin: 0 0 14px; }
+.abk-contact__sub { font-family: 'Geologica', sans-serif; font-size: .9rem; font-weight: 300; color: #191614 !important; opacity: .65; line-height: 1.7; margin: 0; }
+.abk-contact__details { display: flex; flex-direction: column; gap: 28px; margin-top: 44px; }
+.abk-ci { display: flex; flex-direction: column; gap: 5px; }
+.abk-ci__label { font-family: 'Geologica', sans-serif; font-size: .58rem; text-transform: uppercase; letter-spacing: .2em; color: #191614 !important; opacity: .45; font-weight: 700; }
+.abk-ci__val { font-family: 'Geologica', sans-serif; font-size: 1.05rem; font-weight: 500; color: #191614 !important; text-decoration: none; }
+.abk-ci__val:hover { text-decoration: underline; }
+.abk-ci__sm { font-size: .9rem; opacity: .7; }
+.abk-ci__note { font-family: 'Geologica', sans-serif; font-size: .78rem; color: #191614 !important; opacity: .55; }
+
+/* Форма */
+.abk-form { display: flex; flex-direction: column; gap: 10px; }
+.abk-fi {
+  background: rgba(25,22,20,.15); border: 1px solid rgba(25,22,20,.18);
+  padding: 14px 18px; font-family: 'Geologica', sans-serif;
+  font-size: .88rem; color: #191614 !important; outline: none;
+  transition: border-color .2s; -webkit-appearance: none; width: 100%;
+}
+.abk-fi::placeholder { color: rgba(25,22,20,.4); }
+.abk-fi:focus { border-color: #191614; }
+.abk-fi-ta { height: 110px; resize: none; }
+.abk-form__btn {
+  background: #191614; color: #c4a045 !important;
+  padding: 15px 30px; font-family: 'Geologica', sans-serif;
+  font-size: .73rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  border: none; cursor: pointer; transition: background .2s, opacity .2s;
+  align-self: flex-start;
+}
+.abk-form__btn:hover { background: #272019; }
+.abk-form__btn:disabled { opacity: .5; cursor: not-allowed; }
+.abk-form__note { font-family: 'Geologica', sans-serif; font-size: .65rem; color: #191614 !important; opacity: .4; line-height: 1.5; margin: 0; }
+.abk-form__success {
+  display: none;
+  background: rgba(25,22,20,.15); border: 1px solid rgba(25,22,20,.3);
+  padding: 14px 18px; font-family: 'Geologica', sans-serif;
+  font-size: .85rem; color: #191614 !important; font-weight: 500;
+}
+.abk-form__error {
+  display: none;
+  background: rgba(180,50,50,.15); border: 1px solid rgba(180,50,50,.3);
+  padding: 14px 18px; font-family: 'Geologica', sans-serif;
+  font-size: .85rem; color: #191614 !important; font-weight: 500;
+}
+
+/* ══ FOOTER ══ */
+.abk-footer { background: #0e0c0b; padding: 40px 60px; border-top: 1px solid rgba(196,160,69,.09); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.abk-footer__copy { font-family: 'Geologica', sans-serif; font-size: .68rem; opacity: .22; letter-spacing: .05em; }
+.abk-footer__inn { font-family: 'Geologica', sans-serif; font-size: .65rem; opacity: .18; letter-spacing: .07em; }
+
+/* ─── АДАПТИВ ─── */
+@media (max-width: 768px) {
+  .abk-hero { padding: 0 22px 60px; min-height: 85vh; }
+  .abk-hero__stats { display: none; }
+  .abk-hero__title { font-size: clamp(3rem, 14vw, 5rem); }
+  .abk-about, .abk-products, .abk-why, .abk-props, .abk-contact { padding: 60px 22px; }
+  .abk-about__grid, .abk-why__wrap, .abk-contact__wrap { grid-template-columns: 1fr; gap: 36px; }
+  .abk-about__pic { height: 300px; }
+  .abk-prod-grid { grid-template-columns: 1fr; }
+  .abk-products__header { flex-direction: column; align-items: flex-start; }
+  .abk-why__visual { position: static; }
+  .abk-why__pic { height: 280px; }
+  .abk-props__grid { grid-template-columns: 1fr 1fr; }
+  .abk-footer { padding: 32px 22px; flex-direction: column; text-align: center; }
+}
+@media (max-width: 480px) {
+  .abk-props__grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ 01 HERO ══ -->
+<section class="abk-hero">
+  <div class="abk-hero__bg"></div>
+  <div class="abk-hero__inner">
+    <div class="abk-hero__badge">
+      <span class="abk-hero__dot"></span>
+      Кузбасс · Месторождение «Абагурское»
+    </div>
+    <h1 class="abk-hero__title">
+      ДОРОЖНЫЕ<br>
+      <em>СТРОИТЕЛЬНЫЕ</em><br>
+      МАТЕРИАЛЫ
+    </h1>
+    <p class="abk-hero__sub">
+      ООО «Абагурский карьер» — производитель щебня, песка и ПГС из месторождения «Абагурское» в Новокузнецке. На рынке с 1998 года, производство с 1960-х. Быстро, качественно, надёжно.
+    </p>
+    <div class="abk-hero__actions">
+      <a href="#products" class="abk-hero__btn-primary">Наша продукция</a>
+      <a href="tel:+79234613836" class="abk-hero__btn-ghost">8-923-461-38-36</a>
+    </div>
+  </div>
+  <div class="abk-hero__stats">
+    <div class="abk-hero__stat">
+      <div class="abk-hero__stat-num">60+</div>
+      <div class="abk-hero__stat-label">лет производства</div>
+    </div>
+    <div class="abk-hero__stat">
+      <div class="abk-hero__stat-num">68</div>
+      <div class="abk-hero__stat-label">сотрудников</div>
+    </div>
+    <div class="abk-hero__stat">
+      <div class="abk-hero__stat-num">М1000</div>
+      <div class="abk-hero__stat-label">прочность щебня</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 02 TICKER ══ -->
+<div class="abk-ticker">
+  <div class="abk-ticker__inner">
+    <span class="abk-ticker__item">Щебень гравийный</span>
+    <span class="abk-ticker__item">Песок строительный</span>
+    <span class="abk-ticker__item">ПГС · ПЩС</span>
+    <span class="abk-ticker__item">Бетонные смеси</span>
+    <span class="abk-ticker__item">Изделия из бетона</span>
+    <span class="abk-ticker__item">Благоустройство</span>
+    <span class="abk-ticker__item">Новокузнецк · Кузбасс</span>
+    <span class="abk-ticker__item">Быстро · Качественно · Надёжно</span>
+    <span class="abk-ticker__item">Щебень гравийный</span>
+    <span class="abk-ticker__item">Песок строительный</span>
+    <span class="abk-ticker__item">ПГС · ПЩС</span>
+    <span class="abk-ticker__item">Бетонные смеси</span>
+    <span class="abk-ticker__item">Изделия из бетона</span>
+    <span class="abk-ticker__item">Благоустройство</span>
+    <span class="abk-ticker__item">Новокузнецк · Кузбасс</span>
+    <span class="abk-ticker__item">Быстро · Качественно · Надёжно</span>
+  </div>
+</div>
+
+<!-- ══ 03 О КОМПАНИИ ══ -->
+<section class="abk-about" id="about">
+  <div class="abk-about__grid">
+    <div class="abk-anim">
+      <div class="abk-eyebrow">О компании</div>
+      <h2 class="abk-sec-title">НАДЁЖНЫЙ<br>ПОСТАВЩИК<br>КУЗБАССА</h2>
+      <p class="abk-about__p">Производство основано в начале <strong>1960-х годов</strong>. На рынке строительных материалов карьер работает <strong>с 1998 года</strong>. За десятилетия работы выстроена репутация надёжного поставщика дорожно-строительных материалов для всего Новокузнецка и Кемеровской области.</p>
+      <p class="abk-about__p">С <strong>2014 года</strong> предприятие расширило деятельность: запущено производство изделий для благоустройства и бетонных смесей. Поставляем продукцию на стройки всего города и за его пределами. На предприятии работают <strong>68 квалифицированных специалистов</strong>.</p>
+      <div class="abk-chips">
+        <span class="abk-chip">Добыча и переработка</span>
+        <span class="abk-chip">Автодоставка</span>
+        <span class="abk-chip">Бетонные изделия</span>
+        <span class="abk-chip">Благоустройство</span>
+        <span class="abk-chip">4 лицензии</span>
+      </div>
+      <a href="#contact" class="abk-btn-primary" style="margin-top:32px">Запросить прайс</a>
+    </div>
+    <div class="abk-about__pic abk-anim">
+      <img src="https://static.tildacdn.com/tild6130-3063-4639-a462-643936306462/IMG_9867.jpeg" alt="Абагурский карьер">
+      <div class="abk-about__corner"></div>
+      <div class="abk-about__tag">Притомское ш., 32 · г. Новокузнецк · 53.763977, 87.315211</div>
+      <div class="abk-about__badge">
+        <div class="abk-about__badge-num">1998</div>
+        <div class="abk-about__badge-label">на рынке с</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 04 ПРОДУКЦИЯ ══ -->
+<section class="abk-products" id="products">
+  <div class="abk-products__wrap">
+    <div class="abk-products__header">
+      <div>
+        <div class="abk-eyebrow">Продукция</div>
+        <h2 class="abk-sec-title">ЧТО МЫ<br>ПРОИЗВОДИМ</h2>
+      </div>
+      <a href="mailto:aba-karer@yandex.ru" class="abk-btn-ghost">Запросить прайс-лист →</a>
+    </div>
+    <div class="abk-prod-grid">
+
+      <div class="abk-prod-card abk-anim">
+        <div class="abk-prod-ghost">01</div>
+        <div class="abk-prod-icon">🪨</div>
+        <div class="abk-prod-name">Щебень гравийный</div>
+        <div class="abk-prod-tag">⚠️ Только самовывоз</div>
+        <p class="abk-prod-desc">Гравийный щебень из месторождения «Абагурское». Для дорожного строительства, фундаментов и производства бетона.</p>
+        <div class="abk-specs">
+          <div class="abk-sr"><span class="abk-sk">Порода</span><span class="abk-sv">Гравий</span></div>
+          <div class="abk-sr"><span class="abk-sk">Прочность</span><span class="abk-sv">М1000</span></div>
+          <div class="abk-sr"><span class="abk-sk">Морозостойкость</span><span class="abk-sv">F300</span></div>
+          <div class="abk-sr"><span class="abk-sk">Лещадность</span><span class="abk-sv">V–VI группы</span></div>
+          <div class="abk-sr"><span class="abk-sk">Нас. плотность</span><span class="abk-sv">1500 кг/м³</span></div>
+          <div class="abk-sr"><span class="abk-sk">Фракции</span><span class="abk-sv">0–20 / 5–10 / 5–15 / 5–20 мм</span></div>
+        </div>
+      </div>
+
+      <div class="abk-prod-card abk-anim">
+        <div class="abk-prod-ghost">02</div>
+        <div class="abk-prod-icon">⛏️</div>
+        <div class="abk-prod-name">Песок строительный</div>
+        <div class="abk-prod-tag">⚠️ Только самовывоз</div>
+        <p class="abk-prod-desc">Природный карьерный песок для кладочных растворов, штукатурки, бетонных смесей и планировочных работ.</p>
+        <div class="abk-specs">
+          <div class="abk-sr"><span class="abk-sk">Происхождение</span><span class="abk-sv">Карьерный</span></div>
+          <div class="abk-sr"><span class="abk-sk">Месторождение</span><span class="abk-sv">«Абагурское»</span></div>
+          <div class="abk-sr"><span class="abk-sk">Фракция</span><span class="abk-sv">0–5 мм</span></div>
+          <div class="abk-sr"><span class="abk-sk">Стандарт</span><span class="abk-sv">ГОСТ 8736-2014</span></div>
+          <div class="abk-sr"><span class="abk-sk">Применение</span><span class="abk-sv">Бетон, растворы, отсыпка</span></div>
+        </div>
+      </div>
+
+      <div class="abk-prod-card abk-anim">
+        <div class="abk-prod-ghost">03</div>
+        <div class="abk-prod-icon">🏗️</div>
+        <div class="abk-prod-name">ПЩС / ПГС</div>
+        <div class="abk-prod-tag">⚠️ Только самовывоз</div>
+        <p class="abk-prod-desc">Песчано-щебёночная и песчано-гравийная смесь для оснований дорог, подсыпки фундаментов и насыпных работ.</p>
+        <div class="abk-specs">
+          <div class="abk-sr"><span class="abk-sk">Стандарт</span><span class="abk-sv">ГОСТ 23735-2014</span></div>
+          <div class="abk-sr"><span class="abk-sk">Гравий в составе</span><span class="abk-sv">10–90%</span></div>
+          <div class="abk-sr"><span class="abk-sk">Применение</span><span class="abk-sv">Дороги, фундаменты</span></div>
+          <div class="abk-sr"><span class="abk-sk">Срок годности</span><span class="abk-sv">Не ограничен</span></div>
+        </div>
+      </div>
+
+      <div class="abk-prod-card abk-anim">
+        <div class="abk-prod-ghost">04</div>
+        <div class="abk-prod-icon">🧱</div>
+        <div class="abk-prod-name">Изделия из бетона</div>
+        <div class="abk-prod-tag">⚠️ Только самовывоз</div>
+        <p class="abk-prod-desc">С 2014 года производим бетонные изделия для благоустройства: бордюры, тротуарную плитку, водоотводные лотки.</p>
+        <div class="abk-specs">
+          <div class="abk-sr"><span class="abk-sk">Производство с</span><span class="abk-sv">2014 года</span></div>
+          <div class="abk-sr"><span class="abk-sk">ОКВЭД</span><span class="abk-sv">23.69</span></div>
+          <div class="abk-sr"><span class="abk-sk">Применение</span><span class="abk-sv">Благоустройство территорий</span></div>
+        </div>
+      </div>
+
+      <div class="abk-prod-card abk-anim">
+        <div class="abk-prod-ghost">05</div>
+        <div class="abk-prod-icon">🚧</div>
+        <div class="abk-prod-name">Бетонные смеси</div>
+        <p class="abk-prod-desc">Готовые бетонные смеси для жилого и промышленного строительства на основе собственного щебня и песка.</p>
+        <div class="abk-specs">
+          <div class="abk-sr"><span class="abk-sk">Производство с</span><span class="abk-sv">2014 года</span></div>
+          <div class="abk-sr"><span class="abk-sk">Компоненты</span><span class="abk-sv">Собственный щебень и песок</span></div>
+          <div class="abk-sr"><span class="abk-sk">Доставка</span><span class="abk-sv">Автотранспорт</span></div>
+        </div>
+      </div>
+
+      <div class="abk-prod-card abk-anim">
+        <div class="abk-prod-ghost">06</div>
+        <div class="abk-prod-icon">🚛</div>
+        <div class="abk-prod-name">Доставка на объект</div>
+        <p class="abk-prod-desc">Отгрузка только автомобильным транспортом. Поставки по всему Новокузнецку и Кемеровской области.</p>
+        <div class="abk-specs">
+          <div class="abk-sr"><span class="abk-sk">Способ</span><span class="abk-sv">Только автотранспорт</span></div>
+          <div class="abk-sr"><span class="abk-sk">Маршрут</span><span class="abk-sv">Весь Новокузнецк</span></div>
+          <div class="abk-sr"><span class="abk-sk">Регион</span><span class="abk-sv">Кемеровская область</span></div>
+          <div class="abk-sr"><span class="abk-sk">Загрузка</span><span class="abk-sv">Прямо с карьера</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ 05 ПОЧЕМУ МЫ ══ -->
+<section class="abk-why" id="why">
+  <div class="abk-why__wrap">
+    <div>
+      <div class="abk-eyebrow">Преимущества</div>
+      <h2 class="abk-sec-title">ПОЧЕМУ<br>ВЫБИРАЮТ<br>НАС</h2>
+      <div class="abk-why__list">
+        <div class="abk-why__item abk-anim">
+          <div class="abk-why__num">01</div>
+          <div><div class="abk-why__title">Собственное месторождение</div><p class="abk-why__text">Добываем сырьё на месторождении «Абагурское» в Орджоникидзевском районе — без посредников, с полным контролем качества от добычи до отгрузки.</p></div>
+        </div>
+        <div class="abk-why__item abk-anim">
+          <div class="abk-why__num">02</div>
+          <div><div class="abk-why__title">Более 60 лет производства</div><p class="abk-why__text">Предприятие работает с начала 1960-х, на рынке стройматериалов — с 1998 года. Богатый опыт и отработанные технологии добычи и переработки нерудных материалов.</p></div>
+        </div>
+        <div class="abk-why__item abk-anim">
+          <div class="abk-why__num">03</div>
+          <div><div class="abk-why__title">Проверенное качество</div><p class="abk-why__text">Щебень прочностью М1000, морозостойкостью F300. Продукция соответствует ГОСТ. Компания имеет 4 действующие лицензии на ведение деятельности.</p></div>
+        </div>
+        <div class="abk-why__item abk-anim">
+          <div class="abk-why__num">04</div>
+          <div><div class="abk-why__title">Полный ассортимент</div><p class="abk-why__text">Щебень, песок, ПЩС/ПГС, бетонные смеси и изделия для благоустройства — всё с одного производственного комплекса для комплектации любых объектов.</p></div>
+        </div>
+        <div class="abk-why__item abk-anim">
+          <div class="abk-why__num">05</div>
+          <div><div class="abk-why__title">Быстро, качественно, надёжно</div><p class="abk-why__text">Прямая отгрузка с карьера автотранспортом. Поставляем на стройки города и всего Кузбасса. Опытная команда из 68 квалифицированных работников.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="abk-why__visual abk-anim">
+      <div class="abk-why__pic">
+        <img src="https://static.tildacdn.com/tild3031-6161-4564-b763-666136393937/IMG_1003.jpeg" alt="Производство">
+        <div class="abk-why__badge">
+          <div class="abk-why__badge-num">1960</div>
+          <div class="abk-why__badge-label">год основания<br>производства</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 06 ХАРАКТЕРИСТИКИ ══ -->
+<section class="abk-props" id="props">
+  <div class="abk-props__wrap">
+    <div class="abk-eyebrow">Характеристики</div>
+    <h2 class="abk-sec-title">ПАРАМЕТРЫ<br>ПРОДУКЦИИ</h2>
+    <div class="abk-props__grid">
+      <div class="abk-prop-card abk-anim"><div class="abk-prop-icon">💎</div><div class="abk-prop-label">Прочность щебня</div><div class="abk-prop-value">М1000</div><div class="abk-prop-sub">Гравийный · ГОСТ 8267-93</div></div>
+      <div class="abk-prop-card abk-anim"><div class="abk-prop-icon">❄️</div><div class="abk-prop-label">Морозостойкость</div><div class="abk-prop-value">F300</div><div class="abk-prop-sub">Циклов заморозки-оттаивания</div></div>
+      <div class="abk-prop-card abk-anim"><div class="abk-prop-icon">📐</div><div class="abk-prop-label">Лещадность</div><div class="abk-prop-value">V–VI</div><div class="abk-prop-sub">Группы по ГОСТ</div></div>
+      <div class="abk-prop-card abk-anim"><div class="abk-prop-icon">⚖️</div><div class="abk-prop-label">Нас. плотность</div><div class="abk-prop-value">1,45</div><div class="abk-prop-sub">т/м³ (диапазон 1,42–1,48)</div></div>
+      <div class="abk-prop-card abk-anim"><div class="abk-prop-icon">🔢</div><div class="abk-prop-label">Фракции щебня</div><div class="abk-prop-value">5–20</div><div class="abk-prop-sub">мм: 0–20 / 5–10 / 5–15 / 5–20</div></div>
+      <div class="abk-prop-card abk-anim"><div class="abk-prop-icon">🏖️</div><div class="abk-prop-label">Фракция песка</div><div class="abk-prop-value">0–5</div><div class="abk-prop-sub">мм · ГОСТ 8736-2014</div></div>
+      <div class="abk-prop-card abk-anim"><div class="abk-prop-icon">🚛</div><div class="abk-prop-label">Вид отгрузки</div><div class="abk-prop-value">Авто</div><div class="abk-prop-sub">Бетон — доставка · Нерудные — только самовывоз</div></div>
+      <div class="abk-prop-card abk-anim"><div class="abk-prop-icon">📋</div><div class="abk-prop-label">Лицензии</div><div class="abk-prop-value">4</div><div class="abk-prop-sub">Действующих разрешения</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 07 КОНТАКТЫ ══ -->
+<section class="abk-contact" id="contact">
+  <div class="abk-contact__wrap">
+    <div class="abk-anim">
+      <div class="abk-eyebrow-dark">Контакты</div>
+      <h2 class="abk-contact__title">СВЯЖИТЕСЬ<br>С НАМИ</h2>
+      <p class="abk-contact__sub">Готовы рассчитать стоимость, согласовать объём и сроки поставки. Работаем с частными лицами, строительными организациями и муниципальными заказчиками.</p>
+      <div class="abk-contact__details">
+        <div class="abk-ci">
+          <span class="abk-ci__label">Телефоны</span>
+          <a href="tel:+79234613836" class="abk-ci__val">8-923-461-38-36</a>
+          <a href="tel:+73843991187" class="abk-ci__val abk-ci__sm">+7 (3843) 99-11-87</a>
+          <a href="tel:+79617008317" class="abk-ci__val abk-ci__sm">+7-961-700-83-17</a>
+        </div>
+        <div class="abk-ci">
+          <span class="abk-ci__label">E-mail</span>
+          <a href="mailto:Aba-priemnay@yandex.ru" class="abk-ci__val">Aba-priemnay@yandex.ru</a>
+          <a href="mailto:aba-karer@yandex.ru" class="abk-ci__val abk-ci__sm">aba-karer@yandex.ru</a>
+        </div>
+        <div class="abk-ci">
+          <span class="abk-ci__label">Адрес карьера</span>
+          <span class="abk-ci__val">Притомское шоссе, 32</span>
+          <span class="abk-ci__note">г. Новокузнецк, Орджоникидзевский р-н, 654103</span>
+        </div>
+        <div class="abk-ci">
+          <span class="abk-ci__label">Координаты GPS</span>
+          <span class="abk-ci__val abk-ci__sm">53.763977, 87.315211</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ФОРМА — отправка через formsubmit.co без капчи и подтверждения -->
+    <div class="abk-anim">
+      <form
+        id="abkForm"
+        class="abk-form"
+        action="https://formsubmit.co/ajax/Aba-priemnay@yandex.ru"
+        method="POST"
+      >
+        <!-- Служебные поля formsubmit -->
+        <input type="hidden" name="_subject" value="Новая заявка с сайта — Абагурский карьер">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+
+        <input type="text" name="Имя" class="abk-fi" placeholder="Ваше имя">
+        <input type="tel" name="Телефон" class="abk-fi" placeholder="Номер телефона *" required>
+        <select name="Продукция" class="abk-fi">
+          <option value="" disabled selected>Выберите продукцию</option>
+          <option>Щебень 0–20 мм</option>
+          <option>Щебень 5–10 мм</option>
+          <option>Щебень 5–15 мм</option>
+          <option>Щебень 5–20 мм</option>
+          <option>Песок 0–5 мм</option>
+          <option>ПЩС / ПГС</option>
+          <option>Бетонные смеси</option>
+          <option>Изделия из бетона</option>
+          <option>Несколько позиций / другое</option>
+        </select>
+        <input type="text" name="Объём" class="abk-fi" placeholder="Примерный объём (м³ или тонн)">
+        <textarea name="Комментарий" class="abk-fi abk-fi-ta" placeholder="Адрес объекта, сроки, дополнительные требования…"></textarea>
+        <button type="submit" class="abk-form__btn" id="abkBtn">Отправить заявку →</button>
+        <p class="abk-form__note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
+        <div class="abk-form__success" id="abkSuccess">✓ Заявка отправлена! Свяжемся с вами в течение рабочего дня.</div>
+        <div class="abk-form__error" id="abkError">✗ Ошибка отправки. Позвоните нам: +7 (3843) 99-11-87</div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="abk-footer">
+  <span class="abk-footer__copy">© 2025 ООО «Абагурский карьер» · Все права защищены</span>
+  <span class="abk-footer__inn">ИНН 4219006843 · ОГРН 1024201822468 · КПП 422101001</span>
+</footer>
+
+<script>
+/* ── Плавный скролл к продукции ── */
+document.querySelectorAll('a[href="#products"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+/* ── Отправка формы через AJAX (formsubmit.co) ── */
+document.getElementById('abkForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  var form   = this;
+  var btn    = document.getElementById('abkBtn');
+  var ok     = document.getElementById('abkSuccess');
+  var err    = document.getElementById('abkError');
+
+  btn.disabled    = true;
+  btn.textContent = 'Отправляем…';
+
+  fetch(form.action, {
+    method:  'POST',
+    body:    new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
+    if (data.success === 'true' || data.success === true) {
+      form.reset();
+      btn.style.display = 'none';
+      ok.style.display  = 'block';
+    } else {
+      throw new Error('fail');
+    }
+  })
+  .catch(function() {
+    btn.disabled    = false;
+    btn.textContent = 'Отправить заявку →';
+    err.style.display = 'block';
+    setTimeout(function() { err.style.display = 'none'; }, 5000);
+  });
+});
+
+/* ── Анимация появления блоков ── */
+(function() {
+  var els = document.querySelectorAll('.abk-anim');
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e, i) {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i * 0.08) + 's';
+        e.target.classList.add('abk-visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  els.forEach(function(el) { obs.observe(el); });
+})();
+</script>
+
+</body>
+</html>
