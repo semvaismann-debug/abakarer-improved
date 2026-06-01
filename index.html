@@ -544,20 +544,10 @@ body { background: #191614; color: #e2d4b8 !important; overflow-x: hidden; }
 
     <!-- ФОРМА — отправка через formsubmit.co без капчи и подтверждения -->
     <div class="abk-anim">
-      <form
-        id="abkForm"
-        class="abk-form"
-        action="https://formsubmit.co/ajax/Aba-priemnay@yandex.ru"
-        method="POST"
-      >
-        <!-- Служебные поля formsubmit -->
-        <input type="hidden" name="_subject" value="Новая заявка с сайта — Абагурский карьер">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-
-        <input type="text" name="Имя" class="abk-fi" placeholder="Ваше имя">
-        <input type="tel" name="Телефон" class="abk-fi" placeholder="Номер телефона *" required>
-        <select name="Продукция" class="abk-fi">
+      <form id="abkForm" class="abk-form" onsubmit="abkSend(event)">
+        <input type="text" class="abk-fi" placeholder="Ваше имя" id="abkName">
+        <input type="tel" class="abk-fi" placeholder="Номер телефона *" required id="abkPhone">
+        <select class="abk-fi" id="abkProduct">
           <option value="" disabled selected>Выберите продукцию</option>
           <option>Щебень 0–20 мм</option>
           <option>Щебень 5–10 мм</option>
@@ -569,13 +559,52 @@ body { background: #191614; color: #e2d4b8 !important; overflow-x: hidden; }
           <option>Изделия из бетона</option>
           <option>Несколько позиций / другое</option>
         </select>
-        <input type="text" name="Объём" class="abk-fi" placeholder="Примерный объём (м³ или тонн)">
-        <textarea name="Комментарий" class="abk-fi abk-fi-ta" placeholder="Адрес объекта, сроки, дополнительные требования…"></textarea>
+        <input type="text" class="abk-fi" placeholder="Примерный объём (м³ или тонн)" id="abkVolume">
+        <textarea class="abk-fi abk-fi-ta" placeholder="Адрес объекта, сроки…" id="abkComment"></textarea>
         <button type="submit" class="abk-form__btn" id="abkBtn">Отправить заявку →</button>
         <p class="abk-form__note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
-        <div class="abk-form__success" id="abkSuccess">✓ Заявка отправлена! Свяжемся с вами в течение рабочего дня.</div>
-        <div class="abk-form__error" id="abkError">✗ Ошибка отправки. Позвоните нам: +7 (3843) 99-11-87</div>
+        <div class="abk-form__success" id="abkSuccess">✓ Заявка отправлена! Свяжемся в течение рабочего дня.</div>
+        <div class="abk-form__error" id="abkError">✗ Ошибка. Позвоните: 8-923-461-38-36</div>
       </form>
+      <script>
+      function abkSend(e) {
+        e.preventDefault();
+        var btn = document.getElementById('abkBtn');
+        var ok = document.getElementById('abkSuccess');
+        var err = document.getElementById('abkError');
+        var phone = document.getElementById('abkPhone').value;
+        if (!phone) return;
+        btn.disabled = true;
+        btn.textContent = 'Отправляем…';
+        fetch('https://formsubmit.co/ajax/aba-priemnay@yandex.ru', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+          body: JSON.stringify({
+            _subject: 'Новая заявка с сайта — Абагурский карьер',
+            _captcha: 'false',
+            _template: 'table',
+            Имя: document.getElementById('abkName').value || 'не указано',
+            Телефон: phone,
+            Продукция: document.getElementById('abkProduct').value || 'не выбрано',
+            Объём: document.getElementById('abkVolume').value || 'не указано',
+            Комментарий: document.getElementById('abkComment').value || 'нет'
+          })
+        })
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          if (d.success === 'true' || d.success === true) {
+            ok.style.display = 'block';
+            btn.style.display = 'none';
+          } else { throw new Error('fail'); }
+        })
+        .catch(function(){
+          btn.disabled = false;
+          btn.textContent = 'Отправить заявку →';
+          err.style.display = 'block';
+          setTimeout(function(){ err.style.display = 'none'; }, 5000);
+        });
+      }
+      </script>
     </div>
 
   </div>
