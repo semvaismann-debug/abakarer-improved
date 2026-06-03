@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109576310', 'ym');
+    ym(109576310, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109576310" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Абагурский Карьер — Дорожные строительные материалы, Новокузнецк</title>
@@ -577,31 +590,26 @@ body { background: #191614; color: #e2d4b8 !important; overflow-x: hidden; }
         btn.disabled = true;
         btn.textContent = 'Отправляем…';
         var data = new FormData();
-        data.append('name', document.getElementById('abkName').value || 'не указано');
-        data.append('phone', phone);
-        data.append('product', document.getElementById('abkProduct').value || 'не выбрано');
-        data.append('volume', document.getElementById('abkVolume').value || 'не указано');
-        data.append('message', document.getElementById('abkComment').value || 'нет');
-        data.append('_subject', 'Новая заявка — Абагурский карьер');
-        data.append('_captcha', 'false');
-        data.append('_template', 'table');
-        fetch('https://formsubmit.co/aba-priemnay@yandex.ru', {
+        data.append('Имя', document.getElementById('abkName').value || 'не указано');
+        data.append('Телефон', phone);
+        data.append('Продукция', document.getElementById('abkProduct').value || 'не выбрано');
+        data.append('Объём', document.getElementById('abkVolume').value || 'не указано');
+        data.append('Комментарий', document.getElementById('abkComment').value || 'нет');
+        fetch('https://usebasin.com/f/aba-karer-ru', {
           method: 'POST',
           body: data,
           headers: {'Accept': 'application/json'}
         })
         .then(function(r){ return r.json(); })
         .then(function(d){
-          if (d.success === 'true' || d.success === true) {
-            ok.style.display = 'block';
-            btn.style.display = 'none';
-          } else { throw new Error(); }
+          if (d.success) { ok.style.display='block'; btn.style.display='none'; }
+          else { throw new Error(); }
         })
         .catch(function(){
           btn.disabled = false;
           btn.textContent = 'Отправить заявку →';
           err.style.display = 'block';
-          setTimeout(function(){ err.style.display = 'none'; }, 5000);
+          setTimeout(function(){ err.style.display='none'; }, 5000);
         });
       }
       </script>
