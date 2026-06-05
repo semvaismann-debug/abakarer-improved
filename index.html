@@ -562,14 +562,10 @@ body { background: #191614; color: #e2d4b8 !important; overflow-x: hidden; }
         <input type="tel" class="abk-fi" placeholder="Номер телефона *" required id="abkPhone">
         <select class="abk-fi" id="abkProduct">
           <option value="" disabled selected>Выберите продукцию</option>
-          <option>Щебень 0–20 мм</option>
-          <option>Щебень 5–10 мм</option>
-          <option>Щебень 5–15 мм</option>
-          <option>Щебень 5–20 мм</option>
-          <option>Песок 0–5 мм</option>
-          <option>ПЩС / ПГС</option>
-          <option>Бетонные смеси</option>
-          <option>Изделия из бетона</option>
+          <option>Щебень 0–20 мм</option><option>Щебень 5–10 мм</option>
+          <option>Щебень 5–15 мм</option><option>Щебень 5–20 мм</option>
+          <option>Песок 0–5 мм</option><option>ПЩС / ПГС</option>
+          <option>Бетонные смеси</option><option>Изделия из бетона</option>
           <option>Несколько позиций / другое</option>
         </select>
         <input type="text" class="abk-fi" placeholder="Примерный объём (м³ или тонн)" id="abkVolume">
@@ -587,29 +583,27 @@ body { background: #191614; color: #e2d4b8 !important; overflow-x: hidden; }
         var btn = document.getElementById('abkBtn');
         var ok = document.getElementById('abkSuccess');
         var err = document.getElementById('abkError');
-        btn.disabled = true;
-        btn.textContent = 'Отправляем…';
-        var data = new FormData();
-        data.append('Имя', document.getElementById('abkName').value || 'не указано');
-        data.append('Телефон', phone);
-        data.append('Продукция', document.getElementById('abkProduct').value || 'не выбрано');
-        data.append('Объём', document.getElementById('abkVolume').value || 'не указано');
-        data.append('Комментарий', document.getElementById('abkComment').value || 'нет');
-        fetch('https://usebasin.com/f/aba-karer-ru', {
+        btn.disabled = true; btn.textContent = 'Отправляем…';
+        fetch('/api/send', {
           method: 'POST',
-          body: data,
-          headers: {'Accept': 'application/json'}
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            name: document.getElementById('abkName').value||'не указано',
+            phone: phone,
+            product: document.getElementById('abkProduct').value||'не выбрано',
+            volume: document.getElementById('abkVolume').value||'не указано',
+            comment: document.getElementById('abkComment').value||'нет'
+          })
         })
-        .then(function(r){ return r.json(); })
+        .then(function(r){return r.json();})
         .then(function(d){
-          if (d.success) { ok.style.display='block'; btn.style.display='none'; }
-          else { throw new Error(); }
+          if(d.success){ok.style.display='block';btn.style.display='none';}
+          else{throw new Error();}
         })
         .catch(function(){
-          btn.disabled = false;
-          btn.textContent = 'Отправить заявку →';
-          err.style.display = 'block';
-          setTimeout(function(){ err.style.display='none'; }, 5000);
+          btn.disabled=false; btn.textContent='Отправить заявку →';
+          err.style.display='block';
+          setTimeout(function(){err.style.display='none';},5000);
         });
       }
       </script>
