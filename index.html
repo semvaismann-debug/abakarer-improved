@@ -584,26 +584,30 @@ body { background: #191614; color: #e2d4b8 !important; overflow-x: hidden; }
         var ok = document.getElementById('abkSuccess');
         var err = document.getElementById('abkError');
         btn.disabled = true; btn.textContent = 'Отправляем…';
-        fetch('/api/send', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({
-            name: document.getElementById('abkName').value||'не указано',
-            phone: phone,
-            product: document.getElementById('abkProduct').value||'не выбрано',
-            volume: document.getElementById('abkVolume').value||'не указано',
-            comment: document.getElementById('abkComment').value||'нет'
-          })
+        var fd = new FormData();
+        fd.append('_subject', 'Новая заявка — Абагурский карьер');
+        fd.append('_captcha', 'false');
+        fd.append('_template', 'table');
+        fd.append('Имя', document.getElementById('abkName').value || 'не указано');
+        fd.append('Телефон', phone);
+        fd.append('Продукция', document.getElementById('abkProduct').value || 'не выбрано');
+        fd.append('Объём', document.getElementById('abkVolume').value || 'не указано');
+        fd.append('Комментарий', document.getElementById('abkComment').value || 'нет');
+        fetch('https://formsubmit.co/aba-priemnay@yandex.ru', {
+          method: 'POST', body: fd
         })
-        .then(function(r){return r.json();})
-        .then(function(d){
-          if(d.success){ok.style.display='block';btn.style.display='none';}
-          else{throw new Error();}
+        .then(function() {
+          ok.style.display = 'block';
+          btn.style.display = 'none';
+          document.getElementById('abkName').value = '';
+          document.getElementById('abkPhone').value = '';
+          document.getElementById('abkVolume').value = '';
+          document.getElementById('abkComment').value = '';
         })
-        .catch(function(){
-          btn.disabled=false; btn.textContent='Отправить заявку →';
-          err.style.display='block';
-          setTimeout(function(){err.style.display='none';},5000);
+        .catch(function() {
+          btn.disabled = false; btn.textContent = 'Отправить заявку →';
+          err.style.display = 'block';
+          setTimeout(function(){ err.style.display = 'none'; }, 5000);
         });
       }
       </script>
