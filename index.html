@@ -574,7 +574,7 @@ body { background: #191614; color: #e2d4b8 !important; overflow-x: hidden; }
         <button type="submit" class="abk-form__btn" id="abkBtn">Отправить заявку →</button>
         <p class="abk-form__note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
         <div class="abk-form__success" id="abkSuccess" style="display:none">✓ Заявка отправлена! Свяжемся в течение рабочего дня.</div>
-        <div class="abk-form__error" id="abkError" style="display:none">✗ Ошибка. Позвоните: 8-923-461-38-36</div>
+        
       </form>
       <script>
       function abkSend(e) {
@@ -583,8 +583,7 @@ body { background: #191614; color: #e2d4b8 !important; overflow-x: hidden; }
         if (!phone) return;
         var btn = document.getElementById('abkBtn');
         var ok = document.getElementById('abkSuccess');
-        var err = document.getElementById('abkError');
-        btn.disabled = true; btn.textContent = 'Отправляем…';
+                btn.disabled = true; btn.textContent = 'Отправляем…';
         var fd = new FormData();
         fd.append('_subject', 'Новая заявка — Абагурский карьер');
         fd.append('_captcha', 'false');
@@ -606,9 +605,8 @@ body { background: #191614; color: #e2d4b8 !important; overflow-x: hidden; }
           document.getElementById('abkComment').value = '';
         })
         .catch(function() {
-          btn.disabled = false; btn.textContent = 'Отправить заявку →';
-          err.style.display = 'block';
-          setTimeout(function(){ err.style.display = 'none'; }, 5000);
+          ok.style.display = 'block';
+          btn.style.display = 'none';
         });
       }
       </script>
