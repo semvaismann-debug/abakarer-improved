@@ -630,41 +630,6 @@ document.querySelectorAll('a[href="#products"]').forEach(function(a) {
   });
 });
 
-/* ── Отправка формы через AJAX (formsubmit.co) ── */
-document.getElementById('abkForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-
-  var form   = this;
-  var btn    = document.getElementById('abkBtn');
-  var ok     = document.getElementById('abkSuccess');
-  var err    = document.getElementById('abkError');
-
-  btn.disabled    = true;
-  btn.textContent = 'Отправляем…';
-
-  fetch(form.action, {
-    method:  'POST',
-    body:    new FormData(form),
-    headers: { 'Accept': 'application/json' }
-  })
-  .then(function(res) { return res.json(); })
-  .then(function(data) {
-    if (data.success === 'true' || data.success === true) {
-      form.reset();
-      btn.style.display = 'none';
-      ok.style.display  = 'block';
-    } else {
-      throw new Error('fail');
-    }
-  })
-  .catch(function() {
-    btn.disabled    = false;
-    btn.textContent = 'Отправить заявку →';
-    err.style.display = 'block';
-    setTimeout(function() { err.style.display = 'none'; }, 5000);
-  });
-});
-
 /* ── Анимация появления блоков ── */
 (function() {
   var els = document.querySelectorAll('.abk-anim');
